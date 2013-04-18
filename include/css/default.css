@@ -1,0 +1,153 @@
+* {
+	padding:0;
+	margin: 0;
+}
+
+body {
+	color:#666;
+	font-family: Arial,sans-serif;
+}
+
+/* User bar */
+#top_bar {
+	background-color: black;
+	width:100%;
+	color:white;
+	text-align: right;
+}
+
+#user {
+	padding: 5px 10px 5px 0;
+}
+
+#user img {
+	vertical-align: middle;
+}
+
+#user a {
+	color:white;
+	font-weight:bold;
+	text-decoration: none;
+	vertical-align: middle;
+}
+
+#user a:hover {
+	color:#b2b2b2;
+}
+
+#user .shopping_cart_link {
+	height:20px;
+	width:20px;
+	display:inline-block;
+	border:none;
+	background-image: url('/include/img/shopping_cart_white_20.png');
+}
+
+#user .shopping_cart_link:hover {
+	background-image: url('/include/img/shopping_cart_gray_20.png');
+}
+
+#user .logout_link {
+	height:20px;
+	width:20px;
+	display:inline-block;
+	border:none;
+	background-image: url('/include/img/logout_white_20.png');
+}
+
+#user .logout_link:hover {
+	background-image: url('/include/img/logout_gray_20.png');
+}
+
+/* Search Box */
+#search_box {
+	text-align: center;
+	position: absolute;
+	top:50%;
+	left:50%;
+	width:500px;
+	height:30px;
+	margin:-15px 0 0 -250px;
+}
+
+#search_box input[type=text] {
+	font-size:16px;
+	width:63%;
+	padding:2px;
+	margin:2px;
+	border:1px solid gray;
+}
+
+/* Login Box */
+#login_box {
+	text-align: center;
+	position: absolute;
+	top:50%;
+	left:50%;
+	width:350px;
+	height:118px;
+	margin:-59px 0 0 -175px;
+	border:1px solid black;
+}
+
+#login_box span {
+	width:100%;
+}
+
+#login_box input[type=text], #login_box input[type=password] {
+	font-size:20px;
+	width:90%;
+	padding:4px 8px;
+	margin:4px auto;
+	border:1px solid gray;
+}
+
+#login_box #login_post {
+	margin:4px auto;
+	width:96%;
+}
+
+#login_box button {
+	font: bold 11px Arial,sans-serif !important;
+	color: #444 !important;
+	padding:4px 6px 4px;
+	border: 2px outset buttonface;
+}
+
+#status {
+	color:#e2002f;
+	font-size:11px;
+	float:left;
+	padding:3px;
+}
+
+#login {
+	float:right;
+}
+
+/* Button styling */
+.submit, input[type=submit] {
+	background-color: buttonface;
+	border: 1px solid buttonshadow;
+	color: buttontext;
+	text-decoration: none;
+	padding:3px 10px;
+}
+
+.submit:hover {
+	background-color: buttonhighlight;
+}
+
+/* Book listings */
+.book_entry {
+	width: 50%;
+	margin: 10px auto;
+	background-color: #dadada;
+	padding: 7px;
+	border-radius: 5px;
+	border: 3px solid #c1c1c1;
+}
+
+.book_entry h1 {
+	font-size: 16px;
+}
