@@ -43,12 +43,12 @@
 							
 							<div class="book_entry">
 								
-								<?php print_r($book); ?>
+								<?php //print_r($book); ?>
 								
 								<h1><?php echo $book["title"] . " by " . $book["author"] . " (" . date("M d, Y", strtotime($book["published"])) . ")"; ?></h1>
 								
 								
-								<a class="button" data-id="<?php echo $book["isbn"]; ?>" href="javascript:void(0)">Add to Cart</a>
+								<a class="button add_to_cart" data-id="<?php echo $book["isbn"]; ?>" href="javascript:void(0)">Add to Cart</a>
 																
 							</div>
 			
