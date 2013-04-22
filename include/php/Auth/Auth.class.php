@@ -15,6 +15,7 @@ class Auth {
 		if(count($user) == 1) {
 			
 			$_SESSION["username"] = $user[0]["username"];
+			$_SESSION["user_id"] = $user[0]["id"];
 			
 			return true;
 			

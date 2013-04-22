@@ -9,10 +9,10 @@ class Cart {
 	/* Add a single book to a user's cart */
 	public static function AddToCart($user_id, $book_id){
 	
-		$query = "INSERT INTO shopping_cart
-		          VALUES (?, ?)", "is", $user_id, $book_id; 
+		$query = "INSERT INTO shopping_cart (user_id, book_id)
+		          VALUES (?, ?)"; 
 				  
-		return Database::Query($query);
+		return Database::Query($query, "is", $user_id, $book_id);
 	
 	}
 	
@@ -20,9 +20,18 @@ class Cart {
 	public static function RemoveFromCart($user_id, $book_id){
 	
 		$query = "DELETE FROM shopping_cart
-		          WHERE user_id = ? AND book_id = ?", "is",  $user_id, $book_id; 
+		          WHERE user_id = ? AND book_id = ?"; 
 				  
-		return Database::Query($query);
+		return Database::Query($query, "is",  $user_id, $book_id);
+	}
+	
+	/* Returns the number of items in the users shopping cart */
+	public static function GetNumberItemsInCart($user_id) {
+		
+		$result = Database::Query("SELECT COUNT(*) AS count FROM shopping_cart WHERE user_id = ?" , "i", $user_id);
+		
+		return $result[0]["count"];
+		
 	}
 	
 	/* Get all the items in a user's cart */
@@ -30,18 +39,18 @@ class Cart {
 	
 		$query = "SELECT *
 		          FROM shopping_cart
-				  WHERE user_id = ?", "i", $user_id;
+				  WHERE user_id = ?";
 				  
-		return Database::Query($query);
+		return Database::Query($query, "i", $user_id);
 	}
 	
 	/* Remove all exisiting items in a user's shopping_cart */
 	public static function EmptyCart($user_id){
 	
 		$query = "DELETE FROM shopping_cart
-		          WHERE user_id = ?", "i", $user_id;
+		          WHERE user_id = ?";
 				  
-		return Database::Query($query);
+		return Database::Query($query, "i", $user_id);
 	
 	}
 
