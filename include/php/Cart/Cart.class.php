@@ -13,6 +13,11 @@ class Cart {
 		          VALUES (?, ?, ?)"; 
 				  
 		return Database::Query($query, "isi", $user_id, $book_id, $quantity);
+
+		$query = "INSERT INTO shopping_cart (user_id, book_id)
+		          VALUES (?, ?)"; 
+				  
+		return Database::Query($query, "is", $user_id, $book_id);
 	
 	}
 	
@@ -25,6 +30,7 @@ class Cart {
 		return Database::Query($query, "is",  $user_id, $book_id);
 	}
 	
+
 	/* Update the quantity of a particular book the user is ordering */
 	public static function UpdateQuantity($user_id, $book_id, $quantity){
 	
@@ -33,6 +39,14 @@ class Cart {
 				  WHERE user_id = ? AND book_id = ?";
 				  
 		return Database::Query($query, "iis", $quantity, $user_id, $book_id; );
+
+	/* Returns the number of items in the users shopping cart */
+	public static function GetNumberItemsInCart($user_id) {
+		
+		$result = Database::Query("SELECT COUNT(*) AS count FROM shopping_cart WHERE user_id = ?" , "i", $user_id);
+		
+		return $result[0]["count"];
+		
 	}
 	
 	/* Get all the items in a user's cart */
@@ -46,7 +60,7 @@ class Cart {
                   INNER JOIN books
                   ON shopping_cart.book_id = books.isbn
                   WHERE shopping_cart.user_id = ?";
-				  
+	
 		return Database::Query($query, "i", $user_id);
 	}
 	

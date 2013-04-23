@@ -1,6 +1,10 @@
 <?php 
 	require_once($_SERVER["DOCUMENT_ROOT"] . "/include/php/Auth/Auth.class.php");
+	require_once($_SERVER["DOCUMENT_ROOT"] . "/include/php/Cart/Cart.class.php");
 	require_once($_SERVER["DOCUMENT_ROOT"] . "/include/php/Search/Search.class.php");
+	
+	if(!Auth::IsLoggedIn()) { header("location: /auth/login/"); }
+	
 ?>
 <!DOCTYPE html>
 <html>
@@ -22,22 +26,9 @@
     <body>
 		<div id="top_bar">
 			<div id="user">
-				<?php
-
-					if(Auth::IsLoggedIn()) {
-						?>
-							<a href="/user/cart/" class="shopping_cart_link"></a>(3)
-							<a href="/user/"><?php echo $_SESSION["username"]; ?></a>
-							<a href="/auth/logout/" class="logout_link"></a>
-						<?php
-					}
-					else {
-						?>
-							<a href="/auth/login/"><img src="/include/img/login_white_20.png" alt="login"/></a>
-						<?php
-					}
-
-				?>
+				<a href="/user/cart/" class="shopping_cart_link"></a><p id="cart_quantity">(<?php echo Cart::GetNumberItemsInCart($_SESSION["user_id"]); ?>)</p>
+				<a href="/user/"><?php echo $_SESSION["username"]; ?></a>
+				<a href="/auth/logout/" class="logout_link"></a>
 			</div>
 		</div>
 		<div id="search_box">
