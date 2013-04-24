@@ -38,7 +38,7 @@ class Cart {
 		          SET quantity = ?
 				  WHERE user_id = ? AND book_id = ?";
 				  
-		return Database::Query($query, "iis", $quantity, $user_id, $book_id; );
+		return Database::Query($query, "iis", $quantity, $user_id, $book_id);
 
 	/* Returns the number of items in the users shopping cart */
 	public static function GetNumberItemsInCart($user_id) {
