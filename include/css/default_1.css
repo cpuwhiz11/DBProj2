@@ -1,0 +1,109 @@
+* {
+	padding:0;
+	margin: 0;
+}
+
+body {
+	color:#666;
+	font-family: Arial,sans-serif;
+}
+
+nav {
+	background: #f5f6f6; /* Old browsers */
+	background: -moz-linear-gradient(top,  #f5f6f6 72%, #dddfe3 100%, #f5f6f6 100%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(72%,#f5f6f6), color-stop(100%,#dddfe3), color-stop(100%,#f5f6f6)); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(top,  #f5f6f6 72%,#dddfe3 100%,#f5f6f6 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top,  #f5f6f6 72%,#dddfe3 100%,#f5f6f6 100%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(top,  #f5f6f6 72%,#dddfe3 100%,#f5f6f6 100%); /* IE10+ */
+	background: linear-gradient(to bottom,  #f5f6f6 72%,#dddfe3 100%,#f5f6f6 100%); /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f5f6f6', endColorstr='#f5f6f6',GradientType=0 ); /* IE6-9 */
+	padding: 5px;
+	height: 60px;
+}
+
+nav #logo {
+	float: left;
+}
+
+nav #search {
+	position: relative;
+	float: left;
+	width: 600px;
+	height: 30px;
+	border: 1px solid black;
+	border-radius: 6px;
+	margin-top: 10px;
+}
+
+nav #search #submit_button {
+	position: absolute;
+	height: 30px;
+	width: 30px;
+	top: 0;
+	right: 0;
+	background-color: #00024d;
+}
+
+nav #search #seach_in_select {
+	position: absolute;
+	left: 0;
+	top: 0;
+	height: 30px;
+	width: 60px;
+	border-right: 1px solid black;
+}
+
+nav #search #seach_in_select select {
+	border: 0;
+	outline: 0;
+	height: 30px;
+	display: block;
+	background-color: inherit;
+	-webkit-appearance: none;
+	-webkit-rtl-ordering: logical;
+	-webkit-writing-mode: horizontal-tb;
+
+
+}
+
+nav #search #search_box {
+	position: absolute;
+	left: 62px;
+	top: 0;
+	width: 508px;
+	height: 30px;
+}
+
+nav #search #search_box input {
+	width: 100%;
+	height: 30px;
+	border: 0;
+	background: transparent;
+	padding-left: 4px;
+	font-size: 20px;
+}
+
+nav #search #search_box input:focus {
+	outline: none;
+}
+
+nav #search #submit_button input {
+	border: 0;
+	background: 0;
+	color: white;
+	font-weight: bold;
+	font-size: 15px;
+	width: 30px;
+	height: 30px;
+	cursor: pointer;
+}
+
+nav #search #submit_button:hover {
+	background-color: #0b109b;
+}
+
+nav #user {
+	float: right;
+}
+
+
