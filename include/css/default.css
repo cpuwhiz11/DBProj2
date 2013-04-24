@@ -10,9 +10,8 @@ body {
 
 /* User bar */
 #top_bar {
-	background-color: black;
 	width:100%;
-	color:white;
+	color: black;
 	text-align: right;
 }
 
@@ -29,7 +28,7 @@ body {
 }
 
 #user a {
-	color:white;
+	color:black;
 	font-weight:bold;
 	text-decoration: none;
 	vertical-align: middle;
@@ -40,15 +39,8 @@ body {
 }
 
 #user .shopping_cart_link {
-	height:20px;
-	width:20px;
 	display:inline-block;
 	border:none;
-	background-image: url('/include/img/shopping_cart_white_20.png');
-}
-
-#user .shopping_cart_link:hover {
-	background-image: url('/include/img/shopping_cart_gray_20.png');
 }
 
 #user .logout_link {
@@ -56,11 +48,20 @@ body {
 	width:20px;
 	display:inline-block;
 	border:none;
-	background-image: url('/include/img/logout_white_20.png');
+	background-image: url('/include/img/logout_black_20.png');
 }
 
 #user .logout_link:hover {
 	background-image: url('/include/img/logout_gray_20.png');
+}
+
+/* Logo */
+#logo {
+	position: absolute;
+	top: 35%;
+	left: 50%;
+	margin: 0 0 0 -250px;
+	width: 500px;
 }
 
 /* Search Box */
