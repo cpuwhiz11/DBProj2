@@ -21,7 +21,7 @@ class Book {
 		
 		if(strlen($title) > 40) {
 			
-			return substr($title, 0, 40);
+			return substr($title, 0, 40) . "...";
 			
 		}
 		

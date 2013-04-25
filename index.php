@@ -50,7 +50,7 @@
 			</div>
 			
 			<div id="user">
-				Hello, <a href="/user/"><?php echo $_SESSION["username"]; ?>.</a>
+				Hello, <a href="/user/"><?php echo $_SESSION["username"]; ?></a>.
 				<a href="/user/cart/" class="shopping_cart_link">Cart (<?php echo Cart::GetNumberItemsInCart($_SESSION["user_id"]); ?>)</a>
 				<a href="/auth/logout/" class="logout_link"></a>
 			</div>
