@@ -9,15 +9,10 @@ class Cart {
 	/* Add a single book to a user's cart */
 	public static function AddToCart($user_id, $book_id, $quantity){
 	
-		$query = "INSERT INTO shopping_cart
+		$query = "INSERT INTO shopping_cart (user_id, book_id, quantity)
 		          VALUES (?, ?, ?)"; 
 				  
 		return Database::Query($query, "isi", $user_id, $book_id, $quantity);
-
-		$query = "INSERT INTO shopping_cart (user_id, book_id)
-		          VALUES (?, ?)"; 
-				  
-		return Database::Query($query, "is", $user_id, $book_id);
 	
 	}
 	
