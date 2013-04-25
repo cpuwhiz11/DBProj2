@@ -19,9 +19,7 @@
 			$(document).ready(function() {
 				
 				$(".add_to_cart").click(function() {
-					
-					console.log($(this).attr("data-id"));
-					
+										
 					$.post("ajax/addToCart.php",
 						{ 
 							isbn: $(this).attr("data-id"),
@@ -29,6 +27,8 @@
 						},
 						function(data) {
 							console.log(data);
+							
+							$(".shopping_cart_link").html("Cart (" + data + ")");
 						}
 					);
 					
@@ -87,7 +87,7 @@
 			</div>
 			
 			<div id="user">
-				Hello, <a href="/user/"><?php echo $_SESSION["username"]; ?>.</a>
+				Hello, <a href="/user/"><?php echo $_SESSION["username"]; ?></a>.
 				<a href="/user/cart/" class="shopping_cart_link">Cart (<?php echo Cart::GetNumberItemsInCart($_SESSION["user_id"]); ?>)</a>
 				<a href="/auth/logout/" class="logout_link"></a>
 			</div>
@@ -127,7 +127,7 @@
 								<div class="star" data-isbn="<?php echo $book["isbn"]; ?>" data-score="<?php echo ($book["stars"] / $book["ratings"]); ?>"></div>
 																
 								<span class="isbn">ISBN: <?php echo $book["isbn"]; ?></span>
-								<span class="published">Pusblished: <?php echo $book["published"]; ?></span>
+								<span class="published">Pusblished: <?php echo date("n/j/Y", strtotime($book["published"])); ?></span>
 								<span class="category">Category: <?php echo $book["category"]; ?></span>
 								<span class="length">Length: <?php echo $book["length"]; ?> pages</span>
 								<span class="price"><?php echo "$" . $book["price"]; ?></span>
