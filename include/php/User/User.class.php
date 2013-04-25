@@ -13,33 +13,32 @@ class User {
 		$query = "INSERT INTO orders (date, user_id, shipping_address, total_price, tax, shipping)
 		          VALUES (NOW(), ?, ?, ?, ?, ?)"; 
 				  
-	    Database::Query($query, "isiii", $user_id, $shipping_address, $total_price,
-		                                 $tax, $shipping);
+            Database::Query($query, "isiii", $user_id, $shipping_address, $total_price,
+                                             $tax, $shipping);
 										 
-		$query = "SELECT LAST_INSERT_ID()
-		          FROM orders";
-									
-        // Get the id of the order we just made									
-		$order_id = Database::Query($query);
+            $query = "SELECT LAST_INSERT_ID()
+                      FROM orders";
 		
-		$order_id = $order_id[0]["LAST_INSERT_ID()"];
+            // Get the id of the order we just made									
+            $order_id = Database::Query($query);
+                        
+            $order_id = $order_id[0]["LAST_INSERT_ID()"];
 		
-		// Get all the book isbns and quantities the user has in cart
-		$cartArray = Cart::GetCart($user_id);
+            // Get all the book isbns and quantities the user has in cart
+            $cartArray = Cart::GetCart($user_id);
 		
-		// Save the books the user bought in orders
-		// For each book run a seperate query
-		foreach($cartArray as $book) {
-			$query = "INSERT INTO order_items (order_id, isbn, quantity)
-					VALUES (?, ?, ?)";
-				  
-			Database::Query($query, "isi", $order_id, $book["book_id"], $book["quantity"]);
-		}
+            // Save the books the user bought in orders
+            // For each book run a seperate query
+            foreach($cartArray as $book) {
+                    $query = "INSERT INTO order_items (order_id, isbn, quantity)
+                              VALUES (?, ?, ?)";
 		
-		// Delete cart for this user
-	    return Cart::EmptyCart($user_id);
+                    Database::Query($query, "isi", $order_id, $book["book_id"], $book["quantity"]);
+            }
 		
-	}
+            // Delete cart for this user
+            return Cart::EmptyCart($user_id);
+        }
 	
 	
 	/* Get the orders user has placed */
@@ -48,7 +47,7 @@ class User {
 		$query = "SELECT user_id, shipping_address, total_price,
 		                 tax, shipping
 		          FROM orders
-				  WHERE user_id = ?"; 
+			  WHERE user_id = ?"; 
 				  
 	    return Database::Query($query, "i", $user_id);
 		
@@ -59,7 +58,7 @@ class User {
 						   
 		$query = "SELECT isbn, quantity
 		          FROM order_items
-				  WHERE order_id = ?";
+			  WHERE order_id = ?";
 				 
 	    return Database::Query($query, "i", $order_id );
 		
