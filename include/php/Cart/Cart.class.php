@@ -52,7 +52,8 @@ class Cart {
 		$query = "SELECT shopping_cart.user_id,
 		                 shopping_cart.book_id,
 						 books.price, books.title,
-						 books.price * shopping_cart.quantity AS total
+						 books.price * shopping_cart.quantity AS total,
+						 quantity
                   FROM shopping_cart
                   INNER JOIN books
                   ON shopping_cart.book_id = books.isbn
