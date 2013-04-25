@@ -8,7 +8,7 @@ class User {
 
 	/* Get the books a user has ordered */
 	public static function MakeOrder($user_id, $shipping_address,
-	                                   $total_price, $tax, $shipping){
+	                                   $total_price, $tax, $shipping) {
 		// Create order entry						   
 		$query = "INSERT INTO orders (date, user_id, shipping_address, total_price, tax, shipping)
 		          VALUES (NOW(), ?, ?, ?, ?, ?)"; 
@@ -20,7 +20,9 @@ class User {
 		          FROM orders";
 									
         // Get the id of the order we just made									
-		$order_id = Database::Query($query)[0]["LAST_INSERT_ID()"];
+		$order_id = Database::Query($query);
+		
+		$order_id = $order_id[0]["LAST_INSERT_ID()"];
 		
 		// Get all the book isbns and quantities the user has in cart
 		$cartArray = Cart::GetCart($user_id);
@@ -31,11 +33,12 @@ class User {
 			$query = "INSERT INTO order_items (order_id, isbn, quantity)
 					VALUES (?, ?, ?)";
 				  
-			Database::Query($query, "isi" $order_id, $book["book_id"], $book["quantity"]);
+			Database::Query($query, "isi", $order_id, $book["book_id"], $book["quantity"]);
 		}
 		
 		// Delete cart for this user
-	    return Cart::EmptyCart($user_id)
+	    return Cart::EmptyCart($user_id);
+		
 	}
 	
 	
@@ -52,7 +55,7 @@ class User {
 	}
 	
 	/* Get the books a user made on a order */
-	public static function GetOrderHistory($order_id ){
+	public static function GetOrderBooks($order_id ){
 						   
 		$query = "SELECT isbn, quantity
 		          FROM order_items

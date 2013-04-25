@@ -39,7 +39,7 @@ class Cart {
 	/* Returns the number of items in the users shopping cart */
 	public static function GetNumberItemsInCart($user_id) {
 		
-		$result = Database::Query("SELECT COUNT(*) AS count FROM shopping_cart WHERE user_id = ?" , "i", $user_id);
+		$result = Database::Query("SELECT SUM(quantity) AS count FROM shopping_cart WHERE user_id = ?" , "i", $user_id);
 		
 		return $result[0]["count"];
 		
