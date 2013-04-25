@@ -8,79 +8,100 @@ body {
 	font-family: Arial,sans-serif;
 }
 
-/* User bar */
-#top_bar {
-	width:100%;
-	color: black;
-	text-align: right;
+nav {
+	background: #f5f6f6; /* Old browsers */
+	background: -moz-linear-gradient(top,  #f5f6f6 72%, #dddfe3 100%, #f5f6f6 100%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(72%,#f5f6f6), color-stop(100%,#dddfe3), color-stop(100%,#f5f6f6)); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(top,  #f5f6f6 72%,#dddfe3 100%,#f5f6f6 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top,  #f5f6f6 72%,#dddfe3 100%,#f5f6f6 100%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(top,  #f5f6f6 72%,#dddfe3 100%,#f5f6f6 100%); /* IE10+ */
+	background: linear-gradient(to bottom,  #f5f6f6 72%,#dddfe3 100%,#f5f6f6 100%); /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f5f6f6', endColorstr='#f5f6f6',GradientType=0 ); /* IE6-9 */
+	padding: 5px;
+	height: 60px;
 }
 
-#cart_quantity {
-	display: inline;
+nav #logo {
+	float: left;
 }
 
-#user {
-	padding: 5px 10px 5px 0;
+nav #search {
+	position: relative;
+	float: left;
+	width: 600px;
+	height: 30px;
+	border: 1px solid black;
+	border-radius: 6px;
+	margin-top: 10px;
 }
 
-#user img {
-	vertical-align: middle;
-}
-
-#user a {
-	color:black;
-	font-weight:bold;
-	text-decoration: none;
-	vertical-align: middle;
-}
-
-#user a:hover {
-	color:#b2b2b2;
-}
-
-#user .shopping_cart_link {
-	display:inline-block;
-	border:none;
-}
-
-#user .logout_link {
-	height:20px;
-	width:20px;
-	display:inline-block;
-	border:none;
-	background-image: url('/include/img/logout_black_20.png');
-}
-
-#user .logout_link:hover {
-	background-image: url('/include/img/logout_gray_20.png');
-}
-
-/* Logo */
-#logo {
+nav #search #submit_button {
 	position: absolute;
-	top: 35%;
-	left: 50%;
-	margin: 0 0 0 -250px;
-	width: 500px;
+	height: 30px;
+	width: 30px;
+	top: 0;
+	right: 0;
+	background-color: #00024d;
 }
 
-/* Search Box */
-#search_box {
-	text-align: center;
+nav #search #seach_in_select {
 	position: absolute;
-	top:50%;
-	left:50%;
-	width:500px;
-	height:30px;
-	margin:-15px 0 0 -250px;
+	left: 0;
+	top: 0;
+	height: 30px;
+	width: 60px;
+	border-right: 1px solid black;
 }
 
-#search_box input[type=text] {
-	font-size:16px;
-	width:63%;
-	padding:2px;
-	margin:2px;
-	border:1px solid gray;
+nav #search #seach_in_select select {
+	border: 0;
+	outline: 0;
+	height: 30px;
+	display: block;
+	background-color: inherit;
+	-webkit-appearance: none;
+	-webkit-rtl-ordering: logical;
+	-webkit-writing-mode: horizontal-tb;
+}
+
+nav #search #search_box {
+	position: absolute;
+	left: 62px;
+	top: 0;
+	width: 508px;
+	height: 30px;
+}
+
+nav #search #search_box input {
+	width: 100%;
+	height: 30px;
+	border: 0;
+	background: transparent;
+	padding-left: 4px;
+	font-size: 20px;
+}
+
+nav #search #search_box input:focus {
+	outline: none;
+}
+
+nav #search #submit_button input {
+	border: 0;
+	background: 0;
+	color: white;
+	font-weight: bold;
+	font-size: 15px;
+	width: 30px;
+	height: 30px;
+	cursor: pointer;
+}
+
+nav #search #submit_button:hover {
+	background-color: #0b109b;
+}
+
+nav #user {
+	float: right;
 }
 
 /* Login Box */
@@ -159,6 +180,42 @@ body {
 	position: absolute;
 	right: 10px;
 	bottom: 10px;
+}
+
+.star {
+	position: absolute;
+	top: 5px;
+	right: 5px;
+}
+.price {
+	position: absolute;
+	top: 30px;
+	right: 10px;
+	font-size: 30px;
+}
+
+.isbn {
+	position: absolute;
+	top: 30px;
+	left: 15px;
+}
+
+.published {
+	position: absolute;
+	top: 50px;
+	left: 15px;
+}
+
+.category {
+	position: absolute;
+	top: 70px;
+	left: 15px;
+}
+
+.length {
+	position: absolute;
+	top: 90px;
+	left: 15px;
 }
 
 .book_entry h1 {

@@ -8,17 +8,17 @@ class User {
 
 	/* Get the books a user has ordered */
 	public static function MakeOrder($user_id, $shipping_address,
-	                                   $total_price, $tax, $shipping){
-            // Create order entry						   
-            $query = "INSERT INTO orders (date, user_id, shipping_address, total_price, tax, shipping)
-            	          VALUES (NOW(), ?, ?, ?, ?, ?)"; 
+	                                   $total_price, $tax, $shipping) {
+		// Create order entry						   
+		$query = "INSERT INTO orders (date, user_id, shipping_address, total_price, tax, shipping)
+		          VALUES (NOW(), ?, ?, ?, ?, ?)"; 
 				  
             Database::Query($query, "isiii", $user_id, $shipping_address, $total_price,
                                              $tax, $shipping);
 										 
             $query = "SELECT LAST_INSERT_ID()
                       FROM orders";
-									
+		
             // Get the id of the order we just made									
             $order_id = Database::Query($query);
                         
@@ -32,7 +32,7 @@ class User {
             foreach($cartArray as $book) {
                     $query = "INSERT INTO order_items (order_id, isbn, quantity)
                               VALUES (?, ?, ?)";
-				  
+		
                     Database::Query($query, "isi", $order_id, $book["book_id"], $book["quantity"]);
             }
 		
