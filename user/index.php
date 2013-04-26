@@ -1,6 +1,7 @@
 <?php 
 	require_once($_SERVER["DOCUMENT_ROOT"] . "/include/php/Auth/Auth.class.php");
 	require_once($_SERVER["DOCUMENT_ROOT"] . "/include/php/Cart/Cart.class.php");
+       require_once($_SERVER["DOCUMENT_ROOT"] . "/include/php/User/User.class.php");
 	require_once($_SERVER["DOCUMENT_ROOT"] . "/include/php/Search/Search.class.php");
 	
 	if(!Auth::IsLoggedIn()) { header("location: /auth/login/"); }
@@ -10,7 +11,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-		<link href="/include/css/default_1.css" rel="stylesheet" type="text/css"/>
+		<link href="/include/css/default.css" rel="stylesheet" type="text/css"/>
 		<script src="/include/js/jQuery.js"></script>
         <title>Database Project 2</title>
 		<script>
@@ -60,8 +61,43 @@
 		<div id="content">
 			
 			<!-- put content in this div -->
-			Past Orders
+
+			<?php 
+			       echo "Past Orders <br><br>";
+				$pastOrders = User::GetOrderHistory($_SESSION["user_id"]);
+				
+				//echo "<pre>";
+				//print_r($pastOrders);
+				//echo "</pre>";
+
+				if(count($pastOrders) > 0) {
+					foreach($pastOrders as $order) {
+     			              ?>
+                                       <div class = "order">
+                                       <span class="book_prices"><?php echo "Price of Books: $" . strval($order[total_price] - $order[tax] - $order[shipping]); ?></span>
+                                       <span class="book_tax"><?php echo "Tax: $" . strval($order[tax]); ?></span>
+                                       <span class="book_shipping"><?php echo "Shipping: $" . strval($order[shipping]); ?></span>
+                                       <span class="book_total"><?php echo "Total Price: $" . strval($order[total_price]); ?></span>
+                                       <span class="book_shipped"><?php echo "Shipped to: " . strval($order[shipping_address]); ?></span>
+                                       <a href="orders/?id=<?php echo $order[id]; ?>"><order id>See What Books You Ordered</a>
+                                       </div>
 			
+					<?php
+
+					}
+				}
+				else {
+				
+					?>
+			
+					<p>You have no past order!</p>
+					
+					<?php
+				
+				}
+				
+			?>
+		
 		</div>
 		
 </html>
