@@ -46,6 +46,22 @@ class Cart {
 		
 	}
 	
+	/* Get the price of everything in the cart */
+	public static function getCartTotal($user_id)
+	{
+	
+		$query = "SELECT sum(total)
+                  FROM(
+                      SELECT quantity * price as total 
+                      FROM shopping_cart
+                      INNER JOIN books on shopping_cart.book_id = books.isbn
+                      WHERE user_id = ?
+                   ) AS TotalTable";
+				  
+		return Database::Query($query, "i", $user_id);
+		
+	}
+	
 	/* Get all the items in a user's cart */
 	public static function GetCart($user_id){
 		
