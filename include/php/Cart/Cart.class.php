@@ -47,7 +47,7 @@ class Cart {
 	}
 	
 	/* Get the price of everything in the cart */
-	public static function getCartTotal($user_id){
+	public static function GetCartTotal($user_id){
 	
 		$query = "SELECT sum(total)
                   FROM(
