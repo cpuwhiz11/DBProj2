@@ -10,7 +10,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-		<link href="/include/css/default_1.css" rel="stylesheet" type="text/css"/>
+		<link href="/include/css/default.css" rel="stylesheet" type="text/css"/>
 		<script src="/include/js/jQuery.js"></script>
         <title>Database Project 2</title>
 		<script>

@@ -49,15 +49,16 @@ class Cart {
 	/* Get the price of everything in the cart */
 	public static function GetCartTotal($user_id){
 	
-		$query = "SELECT sum(total)
+		$query = "SELECT sum(total) AS total
                   FROM(
                       SELECT quantity * price as total 
                       FROM shopping_cart
                       INNER JOIN books on shopping_cart.book_id = books.isbn
                       WHERE user_id = ?
                    ) AS TotalTable";
-				  
-		return Database::Query($query, "i", $user_id);
+		
+		$result = Database::Query($query, "i", $user_id); 
+		return $result[0]["total"];
 		
 	}
 	
