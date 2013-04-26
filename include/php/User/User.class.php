@@ -44,7 +44,7 @@ class User {
 	/* Get the orders user has placed */
 	public static function GetOrderHistory($user_id){
 						   
-		$query = "SELECT user_id, shipping_address, total_price,
+		$query = "SELECT id, user_id, shipping_address, total_price,
 		                 tax, shipping
 		          FROM orders
 			  WHERE user_id = ?"; 
@@ -56,9 +56,10 @@ class User {
 	/* Get the books a user made on a order */
 	public static function GetOrderBooks($order_id ){
 						   
-		$query = "SELECT isbn, quantity
+		$query = "SELECT title, quantity, books.isbn 
 		          FROM order_items
-			  WHERE order_id = ?";
+                  INNER JOIN books ON order_items.isbn = books.isbn
+                  WHERE order_id =  ?";
 				 
 	    return Database::Query($query, "i", $order_id );
 		

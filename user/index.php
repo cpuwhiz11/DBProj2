@@ -60,6 +60,7 @@
 		<div id="content">
 			
 			<!-- put content in this div -->
+			Past Orders
 			
 		</div>
 		
