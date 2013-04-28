@@ -132,7 +132,7 @@
 								<span class="length">Length: <?php echo $book["length"]; ?> pages</span>
 								<span class="price"><?php echo "$" . $book["price"]; ?></span>
 								
-								<a class="button add_to_cart" data-id="<?php echo $book["isbn"]; ?>" href="javascript:void(0)">Add to Cart</a>
+								<a class="button button_blue add_to_cart" data-id="<?php echo $book["isbn"]; ?>" href="javascript:void(0)">Add to Cart</a>
 																
 							</div>
 			
