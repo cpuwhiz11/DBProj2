@@ -2,6 +2,7 @@
 	require_once($_SERVER["DOCUMENT_ROOT"] . "/include/php/Auth/Auth.class.php");
 	require_once($_SERVER["DOCUMENT_ROOT"] . "/include/php/Cart/Cart.class.php");
 	require_once($_SERVER["DOCUMENT_ROOT"] . "/include/php/Search/Search.class.php");
+       require_once($_SERVER["DOCUMENT_ROOT"] . "/include/php/Home/Home.class.php");
 	
 	if(!Auth::IsLoggedIn()) { header("location: /auth/login/"); }
 	
@@ -10,7 +11,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-		<link href="/include/css/default_1.css" rel="stylesheet" type="text/css"/>
+		<link href="/include/css/default.css" rel="stylesheet" type="text/css"/>
 		<script src="/include/js/jQuery.js"></script>
         <title>Database Project 2</title>
 		<script>
@@ -56,5 +57,39 @@
 			</div>
 						
 		</nav>
-		
+              <div id = "topBooks">
+              
+                <?php 
+                  echo "Top Rated Books <br><br>";
+                  $highestRatedBooks = Home::HighestRatedBooks();
+
+                  $count = 1;
+                  foreach($highestRatedBooks as $book) {
+                  ?>
+                      <div class = "top">
+                      <span class="book"><?php echo strval($count) . ". " . $book[title]; ?></span>
+                      </div>
+		        <?php $count++; ?>
+                     
+                  <?php
+                  } ?>
+
+                <?php 
+                  echo "<br>Most Rated Books <br><br>";
+                  $mostRated = Home::MostRatedBooks(); 
+                  $count = 1;
+
+                  foreach($mostRated as $book) {
+                  ?>
+                      <div class = "top">
+                      <span class="book"><?php echo strval($count) . ". " . $book[title]; ?></span>
+                      </div>
+		        <?php $count++; ?>
+                     
+                  <?php
+                  } ?>
+
+
+              </div>
+
 </html>
