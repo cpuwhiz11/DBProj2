@@ -19,7 +19,7 @@
 			$(document).ready(function() {
 				
 				$("#search_field").focus();
-				
+								
 				$(".update_quantity").click(function() {
 										
 					$.post("ajax/updateQuantity.php", 

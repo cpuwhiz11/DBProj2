@@ -32,7 +32,7 @@
 			</div>
 			
 			<div id="search">
-				<form action="search/" method="get">
+				<form action="/search/" method="get">
 					<div id="seach_in_select">
 						<select name="c">
 							<option value="title">Title</option>
@@ -60,44 +60,65 @@
 		
 		<div id="content">
 			
-			<!-- put content in this div -->
-
-			<?php 
-			       echo "Past Orders <br><br>";
-				$pastOrders = User::GetOrderHistory($_SESSION["user_id"]);
+			<div id="order_history">
 				
-				//echo "<pre>";
-				//print_r($pastOrders);
-				//echo "</pre>";
+				<h1 class="order_history_heading">Past Orders</h1>
 
-				if(count($pastOrders) > 0) {
-					foreach($pastOrders as $order) {
-     			              ?>
-                                       <div class = "order">
-                                       <span class="book_prices"><?php echo "Price of Books: $" . strval($order[total_price] - $order[tax] - $order[shipping]); ?></span>
-                                       <span class="book_tax"><?php echo "Tax: $" . strval($order[tax]); ?></span>
-                                       <span class="book_shipping"><?php echo "Shipping: $" . strval($order[shipping]); ?></span>
-                                       <span class="book_total"><?php echo "Total Price: $" . strval($order[total_price]); ?></span>
-                                       <span class="book_shipped"><?php echo "Shipped to: " . strval($order[shipping_address]); ?></span>
-                                       <a href="orders/?id=<?php echo $order[id]; ?>"><order id>See What Books You Ordered</a>
-                                       </div>
-			
-					<?php
+				<?php 
+
+					$pastOrders = User::GetOrderHistory($_SESSION["user_id"]);
+					
+					if(count($pastOrders) > 0) {
+
+						foreach($pastOrders as $order) {
+
+							?>
+
+								<div class="order">
+									<h1><?php echo "Order: " . str_pad($order["id"], 4, "0", STR_PAD_LEFT); ?></h1>
+									
+									<table class="price_summary">
+										<tr>
+											<td>Price of books:</td>
+											<td><?php echo "$" . number_format($order[total_price] - $order[tax] - $order[shipping], 2); ?></td>
+										</tr>
+										<tr>
+											<td>Tax:</td>
+											<td><?php echo "$" . number_format($order[tax], 2); ?></td>
+										</tr>
+										<tr>
+											<td>Shipping:</td>
+											<td><?php echo "$" . number_format($order[shipping], 2); ?></td>
+										</tr>
+										<tr>
+											<td>Total:</td>
+											<td><?php echo "$" . number_format($order[total_price], 2); ?></td>
+										</tr>
+									</table>
+									
+									<a class="order_contents_link" href="orders/?id=<?php echo $order[id]; ?>">See What Books You Ordered</a>
+									
+								</div>
+
+							<?php
+
+						}
 
 					}
-				}
-				else {
-				
-					?>
-			
-					<p>You have no past order!</p>
-					
-					<?php
-				
-				}
-				
-			?>
+					else {
+
+						?>
+
+							<p>You have no past order!</p>
+
+						<?php
+
+					}
+
+				?>
 		
+			</div>
+							
 		</div>
 		
 </html>

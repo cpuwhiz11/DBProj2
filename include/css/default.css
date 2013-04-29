@@ -298,6 +298,121 @@ nav #user {
 	text-align: center;
 }
 
+/* Popular books styling */
+#topBooks {
+	width: 1000px;
+	margin: 10px auto;
+}
+
+.most_rated, .top_rated {
+	float: left;
+	margin: 0 20px;
+	width: 430px;
+}
+
+#topBooks .popular_books {
+	margin: 10px 0 0 50px;
+	font-size: 20px;
+}
+
+#topBooks .popular_books li {
+	padding: 5px 0;
+}
+
+/* Order history styling */
+#order_history .order_history_heading {
+	text-align: center;
+	margin-top: 10px;
+}
+
+.order {
+	width: 50%;
+	height: 70px;
+	margin: 10px auto;
+	background-color: #dadada;
+	padding: 7px;
+	border-radius: 5px;
+	border: 3px solid #c1c1c1;
+	position: relative;
+}
+
+.order h1 {
+	font-size: 16px;
+}
+
+.order .price_summary {
+	position: absolute;
+	top: 0px;
+	right: 20px;
+}
+
+.order .price_summary td {
+	padding: 0 5px;
+}
+
+.order .price_summary td:last-child {
+	text-align: right;
+}
+
+.order .price_summary tr:nth-last-child(2) td:last-child {
+	border-bottom: 1px solid black;
+}
+
+.order .order_contents_link {
+	position: absolute;
+	bottom: 5px;
+	left: 5px;
+}
+
+/* Order contents styling */
+#order_contents .order_contents_heading {
+	text-align: center;
+}
+
+/* Checkout styling */
+#checkout_form {
+	width: 450px;
+	margin: 0 auto;
+}
+
+#checkout_form h1 {
+	text-align: center;
+	margin-top: 10px;
+}
+
+
+#checkout_form table {
+	width: 450px;
+}
+
+#checkout_form table td, #checkout_form table td input, #checkout_form table td select {
+	padding: 5px;
+	font-size: 20px;
+}
+
+#checkout_form table td select {
+	width: 300px;
+}
+
+#checkout_form table td input {
+	width: 286px;
+}
+
+#checkout_form table td:last-child {
+	text-align: right;
+}
+
+#checkout_form table tr:last-child td:last-child {
+	text-align: right;
+}
+
+#order_confirmation {
+	width: 400px;
+	margin: 10px auto;
+	display: none;
+	text-align: center;
+}
+
 /* Misc Styling */
 .button {
 	background-color: #666;

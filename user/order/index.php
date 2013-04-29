@@ -1,7 +1,8 @@
 <?php 
 	require_once($_SERVER["DOCUMENT_ROOT"] . "/include/php/Auth/Auth.class.php");
+	require_once($_SERVER["DOCUMENT_ROOT"] . "/include/php/Book/Book.class.php");
 	require_once($_SERVER["DOCUMENT_ROOT"] . "/include/php/Cart/Cart.class.php");
-       require_once($_SERVER["DOCUMENT_ROOT"] . "/include/php/User/User.class.php");
+	require_once($_SERVER["DOCUMENT_ROOT"] . "/include/php/User/User.class.php");
 	require_once($_SERVER["DOCUMENT_ROOT"] . "/include/php/Search/Search.class.php");
 	
 	if(!Auth::IsLoggedIn()) { header("location: /auth/login/"); }
@@ -13,12 +14,34 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 		<link href="/include/css/default.css" rel="stylesheet" type="text/css"/>
 		<script src="/include/js/jQuery.js"></script>
+		<script src="/include/js/raty/jquery.raty.js"></script>
         <title>Database Project 2</title>
 		<script>
 			
 			$(document).ready(function() {
 				
 				$("#search_field").focus();
+				
+				$(".star").raty({
+				score: function() {
+					return $(this).attr('data-score');
+				},
+				click: function(score, evt) {
+					
+					$.post("ajax/updateStars.php",
+						{
+							isbn: $(this).attr("data-isbn"),
+							stars: score
+						},
+						function(data) {
+							
+							console.log(data);
+							
+						}
+					);
+					
+				}
+			});
 				
 			});
 			
@@ -32,7 +55,7 @@
 			</div>
 			
 			<div id="search">
-				<form action="search/" method="get">
+				<form action="/search/" method="get">
 					<div id="seach_in_select">
 						<select name="c">
 							<option value="title">Title</option>
@@ -60,38 +83,52 @@
 		
 		<div id="content">
 		
-			<!-- put content in this div -->
-                     <?php 
-                     	echo "Books in this order: <br><br>";
-                    		$pastOrders = User::GetOrderBooks($_GET["id"]);
+			<div id="order_contents">
+				
+				<h1 class="order_contents_heading">Books in this order</h1>
+				
+				<?php
+                
+					$pastOrders = User::GetOrderBooks($_GET["id"]);
 
-				//echo "<pre>";
-				//print_r($pastOrders);
-				//echo "</pre>";
+					if(count($pastOrders) > 0) {
+						
+						foreach($pastOrders as $book) {
+							
+						?>
+				
+							<div class="book_entry">
+																
+								<h1><?php echo Book::TruncateTitle($book["title"]) . " by " . $book["author"] . " (" . date("M d, Y", strtotime($book["published"])) . ")"; ?></h1>
+								
+																
+								<div class="star" data-isbn="<?php echo $book["isbn"]; ?>" data-score="<?php echo ($book["stars"] / $book["ratings"]); ?>"></div>
+																
+								<span class="isbn">ISBN: <?php echo $book["isbn"]; ?></span>
+								<span class="published">Pusblished: <?php echo date("n/j/Y", strtotime($book["published"])); ?></span>
+								<span class="category">Category: <?php echo $book["category"]; ?></span>
+								<span class="length">Length: <?php echo $book["length"]; ?> pages</span>
+								<span class="price"><?php echo "$" . $book["price"]; ?></span>
+																								
+							</div>
 
-				if(count($pastOrders) > 0) {
-					foreach($pastOrders as $order) {
-     			              ?>
-                                       <div class = "order">
-                                       <span class="book_isbn"><?php echo "Title: " . $order[title]; ?></span>
-                                       <span class="book_isbn"><?php echo "ISBN: " . $order[isbn] . " Quantity: " . $order[quantity] ; ?></span>
-                                       </div>
-			
-					<?php
+						<?php
+
+						}
+					}
+					else {
+
+						?>
+
+							<p>Strange, no books here!</p>
+
+						<?php
 
 					}
-				}
-				else {
-				
-					?>
-			
-					<p>Strange, no books here!</p>
-					
-					<?php
-				
-				}
 
-			?>
+				?>
+			
+			</div>
 		
 		</div>
 		

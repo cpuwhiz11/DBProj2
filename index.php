@@ -57,39 +57,59 @@
 			</div>
 						
 		</nav>
-              <div id = "topBooks">
+		<div id = "topBooks">
               
-                <?php 
-                  echo "Top Rated Books <br><br>";
-                  $highestRatedBooks = Home::HighestRatedBooks();
+			<div class="top_rated">
+				
+				<h1>Top Rated Books</h1>
+				
+				<ol class = "popular_books">
 
-                  $count = 1;
-                  foreach($highestRatedBooks as $book) {
-                  ?>
-                      <div class = "top">
-                      <span class="book"><?php echo strval($count) . ". " . $book[title]; ?></span>
-                      </div>
-		        <?php $count++; ?>
-                     
-                  <?php
-                  } ?>
+				<?php 
 
-                <?php 
-                  echo "<br>Most Rated Books <br><br>";
-                  $mostRated = Home::MostRatedBooks(); 
-                  $count = 1;
+					$highestRatedBooks = Home::HighestRatedBooks();
 
-                  foreach($mostRated as $book) {
-                  ?>
-                      <div class = "top">
-                      <span class="book"><?php echo strval($count) . ". " . $book[title]; ?></span>
-                      </div>
-		        <?php $count++; ?>
-                     
-                  <?php
-                  } ?>
+					foreach($highestRatedBooks as $book) {
+
+						?>
+
+							<li class="book"><?php echo $book[title]; ?></li>
+
+						<?php
+					} 
+
+				?>
+
+				</ol>
+			</div>
+                
+			
+				
+			<div class="most_rated">
+				
+				<h1>Most Rated Books</h1>
+				
+				<ol class = "popular_books">
+
+				<?php
 
 
-              </div>
+					$mostRated = Home::MostRatedBooks(); 
+
+					foreach($mostRated as $book) {
+
+					  ?>
+
+						  <li><?php echo $book[title]; ?></li>
+
+					  <?php
+
+					} 
+
+				?>
+
+				</ol>
+			</div>
+		</div>
 
 </html>

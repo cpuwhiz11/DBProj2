@@ -18,52 +18,33 @@
 			
 			$(document).ready(function() {
 				
-				$("#search_field").focus();
-				
-				$(".update_quantity").click(function() {
+				$("#place_order").click(function() {
+					
+					var name		= $("#name").val();
+					var streetName	= $("#streetName").val();
+					var cityName	= $("#cityName").val();
+					var state		= $("#state").val();
+					var zipCode		= $("#zipCode").val();
+					var tax			= $("#tax").html().replace("$", "");
+					var shipping	= $("#shipping").html().replace("$", "");
+					var total		= $("#total").html().replace("$", "");
+					
+					var address = name + " " + streetName + " " + cityName + " " + state + " " + zipCode;
 										
-					$.post("ajax/updateQuantity.php", 
+					$.post("ajax/placeOrder.php",
 						{
-							isbn: $(this).attr("data-id"),
-							quantity: $(this).closest("div").find(".quantity_input").val()
+							shipping_address: address,
+							tax: tax,
+							shipping: shipping,
+							total: total
 						},
 						function(data) {
-							var json = jQuery.parseJSON(data);
 							
-							$("#total_price").html("Total: $" + json.cart_total);
-							$(".shopping_cart_link").html("Cart (" + json.cart_quantity + ")");
+							$("#checkout_form").fadeOut(500);
+							$("#order_confirmation").fadeIn(300);
 							
 						}
 					);
-					
-				});
-				
-				$(".remove_from_cart").click(function() {
-					
-					$.post("ajax/removeFromCart.php",
-						{
-							isbn: $(this).attr("data-id")
-						},
-						function(data) {
-							var json = jQuery.parseJSON(data);
-							
-							$("#total_price").html("Total: $" + json.cart_total);
-							$(".shopping_cart_link").html("Cart (" + json.cart_quantity + ")");
-																					
-						}
-					);
-						
-					$(this).closest("div").remove();
-					
-					if($(".cart_item").length == 0) {
-						
-						$("#cart_summary").remove();
-						
-						var emptyCart = $("<div class=\"empty_cart\"><h2>Your cart is empty!</h2></div>");
-						
-						$("#content").append(emptyCart);
-						
-					}
 					
 				});
 				
@@ -106,65 +87,119 @@
 		</nav>
 		
 		<div id="content">
-                  <form>
-                      Street Name: <input type="text" name="streetName"><br>
-                      City: <input type="text" name="cityName"><br>
-                      State: <select name="state"><br>
-	                     <option value="AL">Alabama</option>
-				<option value="AK">Alaska</option>
-				<option value="AZ">Arizona</option>
-				<option value="AR">Arkansas</option>
-				<option value="CA">California</option>
-				<option value="CO">Colorado</option>
-				<option value="CT">Connecticut</option>
-				<option value="DE">Delaware</option>
-				<option value="DC">District of Columbia</option>
-				<option value="FL">Florida</option>
-				<option value="GA">Georgia</option>
-				<option value="HI">Hawaii</option>
-				<option value="ID">Idaho</option>
-				<option value="IL">Illinois</option>
-				<option value="IN">Indiana</option>
-				<option value="IA">Iowa</option>
-				<option value="KS">Kansas</option>
-				<option value="KY">Kentucky</option>
-				<option value="LA">Louisiana</option>
-				<option value="ME">Maine</option>
-				<option value="MD">Maryland</option>
-				<option value="MA">Massachusetts</option>
-				<option value="MI">Michigan</option>
-				<option value="MN">Minnesota</option>
-				<option value="MS">Mississippi</option>
-				<option value="MO">Missouri</option>
-				<option value="MT">Montana</option>
-				<option value="NE">Nebraska</option>
-				<option value="NV">Nevada</option>
-				<option value="NH">New Hampshire</option>
-				<option value="NJ">New Jersey</option>
-				<option value="NM">New Mexico</option>
-				<option value="NY">New York</option>
-				<option value="NC">North Carolina</option>
-				<option value="ND">North Dakota</option>
-				<option value="OH">Ohio</option>
-				<option value="OK">Oklahoma</option>
-				<option value="OR">Oregon</option>
-				<option value="PA">Pennsylvania</option>
-				<option value="RI">Rhode Island</option>
-				<option value="SC">South Carolina</option>
-				<option value="SD">South Dakota</option>
-				<option value="TN">Tennessee</option>
-				<option value="TX">Texas</option>
-				<option value="UT">Utah</option>
-				<option value="VT">Vermont</option>
-				<option value="VA">Virginia</option>
-				<option value="WA">Washington</option>
-				<option value="WV">West Virginia</option>
-				<option value="WI">Wisconsin</option>
-				<option value="WY">Wyoming</option>
-                      </select>
-                      Zip Code: <input type="text" name="zipCode"><br>
-                  </form>
+			
+			<div id="checkout_form">
+				
+				<?php
+				
+					$tax = number_format(Cart::GetCartTotal($_SESSION["user_id"]) * .0625, 2);
+					$shipping = number_format(rand(5, 20), 2);
+					$total = Cart::GetCartTotal($_SESSION["user_id"]) + $tax + $shipping;
+				
+				?>
+				
+				<h1>Order Information</h1>
+			
+				<table>
+					<tr>
+						<td>Name:</td>
+						<td><input type="text" id="name"></td>
+					</tr>
+					<tr>
+						<td>Street Name:</td>
+						<td><input type="text" id="streetName"></td>
+					</tr>
+					<tr>
+						<td>City:</td>
+						<td><input type="text" id="cityName"></td>
+					</tr>
+					<tr>
+						<td>State:</td>
+						<td>
+							<select id="state"><br>
+								<option value="AL">Alabama</option>
+								<option value="AK">Alaska</option>
+								<option value="AZ">Arizona</option>
+								<option value="AR">Arkansas</option>
+								<option value="CA">California</option>
+								<option value="CO">Colorado</option>
+								<option value="CT">Connecticut</option>
+								<option value="DE">Delaware</option>
+								<option value="DC">District of Columbia</option>
+								<option value="FL">Florida</option>
+								<option value="GA">Georgia</option>
+								<option value="HI">Hawaii</option>
+								<option value="ID">Idaho</option>
+								<option value="IL">Illinois</option>
+								<option value="IN">Indiana</option>
+								<option value="IA">Iowa</option>
+								<option value="KS">Kansas</option>
+								<option value="KY">Kentucky</option>
+								<option value="LA">Louisiana</option>
+								<option value="ME">Maine</option>
+								<option value="MD">Maryland</option>
+								<option value="MA">Massachusetts</option>
+								<option value="MI">Michigan</option>
+								<option value="MN">Minnesota</option>
+								<option value="MS">Mississippi</option>
+								<option value="MO">Missouri</option>
+								<option value="MT">Montana</option>
+								<option value="NE">Nebraska</option>
+								<option value="NV">Nevada</option>
+								<option value="NH">New Hampshire</option>
+								<option value="NJ">New Jersey</option>
+								<option value="NM">New Mexico</option>
+								<option value="NY">New York</option>
+								<option value="NC">North Carolina</option>
+								<option value="ND">North Dakota</option>
+								<option value="OH">Ohio</option>
+								<option value="OK">Oklahoma</option>
+								<option value="OR">Oregon</option>
+								<option value="PA">Pennsylvania</option>
+								<option value="RI">Rhode Island</option>
+								<option value="SC">South Carolina</option>
+								<option value="SD">South Dakota</option>
+								<option value="TN">Tennessee</option>
+								<option value="TX">Texas</option>
+								<option value="UT">Utah</option>
+								<option value="VT">Vermont</option>
+								<option value="VA">Virginia</option>
+								<option value="WA">Washington</option>
+								<option value="WV">West Virginia</option>
+								<option value="WI">Wisconsin</option>
+								<option value="WY">Wyoming</option>
+							</select>
+						</td>
+					</tr>
+					<tr>
+						<td>Zip Code:</td>
+						<td><input type="text" id="zipCode"></td>
+					</tr>
+					<tr>
+						<td>Tax:</td>
+						<td id="tax"><?php echo "$" . $tax; ?></td>
+					</tr>
+					<tr>
+						<td>Shipping:</td>
+						<td id="shipping"><?php echo "$" . $shipping; ?></td>
+					</tr>
+					<tr>
+						<td>Total:</td>
+						<td id="total"><?php echo "$" . $total; ?></td>
+					</tr>
+					<tr>
+						<td>&nbsp;</td>
+						<td><a class="button button_green" id="place_order" href="javascript:void(0)">Place order!</a>
+					</tr>
+				</table>
 
+			</div>
+			
+			<div id="order_confirmation">
+				
+				<h1>Thank you for your order!</h1>
+				
+			</div>
 			
 		</div>
 		

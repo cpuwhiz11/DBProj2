@@ -3,6 +3,7 @@
 session_start();
 
 require_once($_SERVER["DOCUMENT_ROOT"] . "/include/php/Database/Database.class.php");
+require_once($_SERVER["DOCUMENT_ROOT"] . "/include/php/Cart/Cart.class.php");
 
 class User {
 
@@ -56,7 +57,7 @@ class User {
 	/* Get the books a user made on a order */
 	public static function GetOrderBooks($order_id ){
 						   
-		$query = "SELECT title, quantity, books.isbn 
+		$query = "SELECT title, quantity, books.isbn, books.published, books.length, books.price, books.stars, books.ratings
 		          FROM order_items
                   INNER JOIN books ON order_items.isbn = books.isbn
                   WHERE order_id =  ?";
