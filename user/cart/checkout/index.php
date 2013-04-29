@@ -32,6 +32,28 @@
 					/* Concatenate all the shipping information into an address */
 					var address = name + " " + streetName + " " + cityName + " " + state + " " + zipCode;
 							
+			    	/* Check that the fields are valid */
+				    if (name.length == 0)
+				    {
+					  alert("You must enter a name.");
+					  return false; 
+				    }
+				    if (streetName.length == 0)
+				    {
+					  alert("You must enter a stree name.");
+					  return false; 
+				    }
+				    if (cityName.length == 0)
+				    {
+					  alert("You must enter a city name");
+					  return false; 
+				    }
+				    if (zipCode.length == 0 || zipCode.length < 5)
+				    {
+					  alert("You must enter a valid zip code.");
+					  return false; 
+				    }
+							
 					/* Create order */
 					$.post("ajax/placeOrder.php",
 						{
