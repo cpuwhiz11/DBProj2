@@ -121,11 +121,6 @@
 				
 			?>
 			
-			<div id="sorting_order">
-				<a href="/search/?<?php echo "c=" . $_GET["c"] . "&s=" . $_GET["s"] . "&o=price&d=$dir"; ?>">Price</a>
-				<a href="/search/?<?php echo "c=" . $_GET["c"] . "&s=" . $_GET["s"] . "&o=stars&d=$dir"; ?>">Popularity</a>
-			</div>
-			
 			<?php
 				
 				if(isset($_GET["o"]) && isset($_GET["d"])) {
@@ -136,6 +131,17 @@
 				}
 				
 				if(count($books) > 0) {
+					
+					?>
+			
+						<div id="sorting_order">
+							<a href="/search/?<?php echo "c=" . $_GET["c"] . "&s=" . $_GET["s"] . "&o=price&d=$dir"; ?>">Price</a>
+							<a href="/search/?<?php echo "c=" . $_GET["c"] . "&s=" . $_GET["s"] . "&o=stars&d=$dir"; ?>">Popularity</a>
+						</div>
+			
+			
+					<?php
+					
 					foreach($books as $book) {
 						
 						?>
@@ -182,7 +188,7 @@
 			
 						<div class="no_books">
 				
-							<p>No books found!</p>
+							<h2>No books found!</h2>
 							
 						</div>
 			

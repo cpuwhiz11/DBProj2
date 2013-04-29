@@ -247,6 +247,12 @@ nav #user {
 	color: #6666ff;
 }
 
+.no_books {
+	width: 50%;
+	margin: 10px auto;
+	text-align: center;
+}
+
 /* Shopping cart */
 .cart_item {
 	width: 50%;
