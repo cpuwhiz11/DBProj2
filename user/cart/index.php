@@ -19,7 +19,8 @@
 			$(document).ready(function() {
 				
 				$("#search_field").focus();
-								
+				
+				/* Update the quantity of a book */
 				$(".update_quantity").click(function() {
 										
 					$.post("ajax/updateQuantity.php", 
@@ -38,6 +39,7 @@
 					
 				});
 				
+				/* Remove book from cart */
 				$(".remove_from_cart").click(function() {
 					
 					$.post("ajax/removeFromCart.php",
@@ -52,9 +54,11 @@
 																					
 						}
 					);
-						
+					
+					/* Remove book from page */
 					$(this).closest("div").remove();
 					
+					/* Cart is now empty, display the empty cart message */
 					if($(".cart_item").length == 0) {
 						
 						$("#cart_summary").remove();
@@ -84,7 +88,6 @@
 						<select name="c">
 							<option value="title">Title</option>
 							<option value="author">Author</option>
-							<option value="publishers">Publishers</option>
 							<option value="keyword">Keyword</option>
 						</select>
 					</div>

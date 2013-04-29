@@ -73,7 +73,6 @@
 						<select name="c">
 							<option value="title">Title</option>
 							<option value="author">Author</option>
-							<option value="publishers">Publishers</option>
 							<option value="keyword">Keyword</option>
 						</select>
 					</div>

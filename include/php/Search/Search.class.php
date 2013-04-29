@@ -4,8 +4,14 @@ session_start();
 
 require_once($_SERVER["DOCUMENT_ROOT"] . "/include/php/Database/Database.class.php");
 
+/* Class to handle book searches */
 class Search {
 	
+	/*
+	 * Returns an array of books matching the search criteria
+	 * $searchIn must be equal to "title", "author", "keywords"
+	 * $search is the search string entered
+	 */
 	public static function GetBooks($searchIn, $search) {
 		
 		$keywords = explode(" ", $search);
@@ -33,12 +39,6 @@ class Search {
 				$query .= "authors.author LIKE '%" . $search . "%'";
 				
 			}
-			/* Search in publishers */
-			else if($searchIn == "publishers") {
-				
-				$query .= "publishers.name LIKE '%" . $search . "%'";
-				
-			}
 			/* Search in keywords */
 			else {
 				
@@ -64,6 +64,7 @@ class Search {
 		
 	}
 	
+	/* Returns an array of the categories */
 	public static function GetCategories() {
 		
 		return Database::Query("SELECT id, category FROM categories");

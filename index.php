@@ -2,7 +2,7 @@
 	require_once($_SERVER["DOCUMENT_ROOT"] . "/include/php/Auth/Auth.class.php");
 	require_once($_SERVER["DOCUMENT_ROOT"] . "/include/php/Cart/Cart.class.php");
 	require_once($_SERVER["DOCUMENT_ROOT"] . "/include/php/Search/Search.class.php");
-       require_once($_SERVER["DOCUMENT_ROOT"] . "/include/php/Home/Home.class.php");
+	require_once($_SERVER["DOCUMENT_ROOT"] . "/include/php/Home/Home.class.php");
 	
 	if(!Auth::IsLoggedIn()) { header("location: /auth/login/"); }
 	
@@ -32,12 +32,11 @@
 			</div>
 			
 			<div id="search">
-				<form action="search/" method="get">
+				<form action="/search/" method="get">
 					<div id="seach_in_select">
 						<select name="c">
 							<option value="title">Title</option>
 							<option value="author">Author</option>
-							<option value="publishers">Publishers</option>
 							<option value="keyword">Keyword</option>
 						</select>
 					</div>

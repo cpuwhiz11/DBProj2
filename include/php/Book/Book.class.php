@@ -4,6 +4,7 @@ session_start();
 
 require_once($_SERVER["DOCUMENT_ROOT"] . "/include/php/Database/Database.class.php");
 
+/* Class to manage things related to an individual book */
 class Book {
 
 	/* Update the ratings for a book */
@@ -17,6 +18,7 @@ class Book {
 	
 	}
 	
+	/* Truncates the title of a book but limiting the length to 40 characters and add an ellipse at the end */
 	public static function TruncateTitle($title) {
 		
 		if(strlen($title) > 40) {

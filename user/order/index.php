@@ -22,26 +22,12 @@
 				
 				$("#search_field").focus();
 				
+				/* Display ratings for each book */
 				$(".star").raty({
-				score: function() {
-					return $(this).attr('data-score');
-				},
-				click: function(score, evt) {
-					
-					$.post("ajax/updateStars.php",
-						{
-							isbn: $(this).attr("data-isbn"),
-							stars: score
-						},
-						function(data) {
-							
-							console.log(data);
-							
-						}
-					);
-					
-				}
-			});
+					score: function() {
+						return $(this).attr('data-score');
+					}
+				});
 				
 			});
 			
@@ -60,7 +46,6 @@
 						<select name="c">
 							<option value="title">Title</option>
 							<option value="author">Author</option>
-							<option value="publishers">Publishers</option>
 							<option value="keyword">Keyword</option>
 						</select>
 					</div>

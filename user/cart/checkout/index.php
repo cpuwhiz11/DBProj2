@@ -29,8 +29,10 @@
 					var shipping	= $("#shipping").html().replace("$", "");
 					var total		= $("#total").html().replace("$", "");
 					
+					/* Concatenate all the shipping information into an address */
 					var address = name + " " + streetName + " " + cityName + " " + state + " " + zipCode;
-										
+							
+					/* Create order */
 					$.post("ajax/placeOrder.php",
 						{
 							shipping_address: address,
@@ -65,7 +67,6 @@
 						<select name="c">
 							<option value="title">Title</option>
 							<option value="author">Author</option>
-							<option value="publishers">Publishers</option>
 							<option value="keyword">Keyword</option>
 						</select>
 					</div>
