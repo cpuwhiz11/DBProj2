@@ -71,32 +71,34 @@
 					if(count($pastOrders) > 0) {
 
 						foreach($pastOrders as $order) {
-
+							
 							?>
 
 								<div class="order">
-									<h1><?php echo "Order: " . str_pad($order["id"], 4, "0", STR_PAD_LEFT); ?></h1>
+									<h1><?php echo "Order: " . str_pad($order["id"], 4, "0", STR_PAD_LEFT); ?>, placed on <?php echo date("n/j/Y", strtotime($order["date"])) ?></h1>
 									
 									<table class="price_summary">
 										<tr>
 											<td>Price of books:</td>
-											<td><?php echo "$" . number_format($order[total_price] - $order[tax] - $order[shipping], 2); ?></td>
+											<td><?php echo "$" . number_format($order["total_price"] - $order["tax"] - $order["shipping"], 2); ?></td>
 										</tr>
 										<tr>
 											<td>Tax:</td>
-											<td><?php echo "$" . number_format($order[tax], 2); ?></td>
+											<td><?php echo "$" . number_format($order["tax"], 2); ?></td>
 										</tr>
 										<tr>
 											<td>Shipping:</td>
-											<td><?php echo "$" . number_format($order[shipping], 2); ?></td>
+											<td><?php echo "$" . number_format($order["shipping"], 2); ?></td>
 										</tr>
 										<tr>
 											<td>Total:</td>
-											<td><?php echo "$" . number_format($order[total_price], 2); ?></td>
+											<td><?php echo "$" . number_format($order["total_price"], 2); ?></td>
 										</tr>
 									</table>
 									
-									<a class="order_contents_link" href="orders/?id=<?php echo $order[id]; ?>">See What Books You Ordered</a>
+									<span class="shipping_address">Shipped To: <?php echo $order["shipping_address"]; ?></span>
+									
+									<a class="order_contents_link" href="orders/?id=<?php echo $order["id"]; ?>">See What Books You Ordered</a>
 									
 								</div>
 

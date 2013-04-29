@@ -46,9 +46,10 @@ class User {
 	public static function GetOrderHistory($user_id){
 						   
 		$query = "SELECT id, user_id, shipping_address, total_price,
-		                 tax, shipping
+		                 tax, shipping, date
 		          FROM orders
-			  WHERE user_id = ?"; 
+			  WHERE user_id = ?
+			  ORDER BY date DESC"; 
 				  
 	    return Database::Query($query, "i", $user_id);
 		
