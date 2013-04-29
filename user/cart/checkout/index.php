@@ -80,7 +80,7 @@
 		
 		<nav>
 			<div id="logo">
-				<img src="/include/img/booksrus_logo_250.png"/>
+				<a href="/"><img src="/include/img/booksrus_logo_250.png"/></a>
 			</div>
 			
 			<div id="search">
@@ -90,6 +90,7 @@
 							<option value="title">Title</option>
 							<option value="author">Author</option>
 							<option value="keyword">Keyword</option>
+							<option value="category">Category</option>
 						</select>
 					</div>
 					<div id="search_box">

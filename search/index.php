@@ -64,7 +64,7 @@
 		
 		<nav>
 			<div id="logo">
-				<img src="/include/img/booksrus_logo_250.png"/>
+				<a href="/"><img src="/include/img/booksrus_logo_250.png"/></a>
 			</div>
 			
 			<div id="search">
