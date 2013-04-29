@@ -71,13 +71,14 @@
 				<form action="/search/" method="get">
 					<div id="seach_in_select">
 						<select name="c">
-							<option value="title">Title</option>
-							<option value="author">Author</option>
-							<option value="keyword">Keyword</option>
+							<option value="title" <?php echo (($_GET["c"] == "title") ? "selected" : ""); ?>>Title</option>
+							<option value="author" <?php echo (($_GET["c"] == "author") ? "selected" : ""); ?>>Author</option>
+							<option value="keyword" <?php echo (($_GET["c"] == "keyword") ? "selected" : ""); ?>>Keyword</option>
+							<option value="category" <?php echo (($_GET["c"] == "category") ? "selected" : ""); ?>>Category</option>
 						</select>
 					</div>
 					<div id="search_box">
-						<input type="text" name="s" id="search_field" />
+						<input type="text" name="s" id="search_field" value="<?php echo $_GET["s"]; ?>" />
 					</div>
 					<div id="submit_button">
 						<input type="submit" value="Go"/>
@@ -94,9 +95,45 @@
 		</nav>
 		
 		<div id="content">
-			<?php
 			
-				$books = Search::GetBooks($_GET["c"], $_GET["s"]);
+			<?php 
+			
+				if(isset($_GET["o"]) && $_GET["o"] == "price") {
+					
+					if(isset($_GET["d"]) && $_GET["d"] == "asc") {
+						$dir = "desc";
+					}
+					else {
+						$dir = "asc";
+					}
+					
+				}
+				else {
+					
+					if(isset($_GET["d"]) && $_GET["d"] == "asc") {
+						$dir = "desc";
+					}
+					else {
+						$dir = "asc";
+					}
+					
+				}
+				
+			?>
+			
+			<div id="sorting_order">
+				<a href="/search/?<?php echo "c=" . $_GET["c"] . "&s=" . $_GET["s"] . "&o=price&d=$dir"; ?>">Price</a>
+				<a href="/search/?<?php echo "c=" . $_GET["c"] . "&s=" . $_GET["s"] . "&o=stars&d=$dir"; ?>">Popularity</a>
+			</div>
+			
+			<?php
+				
+				if(isset($_GET["o"]) && isset($_GET["d"])) {
+					$books = Search::GetBooks($_GET["c"], $_GET["s"], $_GET["o"], $_GET["d"]);
+				}
+				else {
+					$books = Search::GetBooks($_GET["c"], $_GET["s"]);
+				}
 				
 				if(count($books) > 0) {
 					foreach($books as $book) {

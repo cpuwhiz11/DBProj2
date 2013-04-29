@@ -12,7 +12,7 @@ class Search {
 	 * $searchIn must be equal to "title", "author", "keywords"
 	 * $search is the search string entered
 	 */
-	public static function GetBooks($searchIn, $search) {
+	public static function GetBooks($searchIn, $search, $order = "stars", $dir = "desc") {
 		
 		$keywords = explode(" ", $search);
 				
@@ -21,6 +21,8 @@ class Search {
 						ON books.author_id = authors.id
 					LEFT JOIN publishers
 						ON books.publisher_id = publishers.id
+					INNER JOIN categories
+						ON categories.id = books.category_id
 				  WHERE ";
 		
 		$keywordCount = count($keywords);
@@ -39,6 +41,11 @@ class Search {
 				$query .= "authors.author LIKE '%" . $search . "%'";
 				
 			}
+			else if($searchIn == "category") {
+				
+				$query .= "categories.category = '" . $search . "'";
+				
+			}
 			/* Search in keywords */
 			else {
 				
@@ -53,6 +60,13 @@ class Search {
 
 				}
 				
+			}
+						
+			if($order == "stars") {
+				$query .= " ORDER BY (stars / ratings) $dir";
+			}
+			else {
+				$query .= " ORDER BY $order $dir";
 			}
 			
 		}

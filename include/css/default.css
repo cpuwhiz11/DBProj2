@@ -229,6 +229,24 @@ nav #user {
 	bottom: 11px;
 }
 
+#sorting_order {
+	width: 50%;
+	margin: 10px auto;
+	text-align: right;
+	vertical-align: middle;
+}
+
+#sorting_order a {
+	text-decoration: none;
+	color: #0000ff;
+	font-weight: bold;
+	vertical-align: middle;
+}
+
+#sorting_order a:hover {
+	color: #6666ff;
+}
+
 /* Shopping cart */
 .cart_item {
 	width: 50%;
